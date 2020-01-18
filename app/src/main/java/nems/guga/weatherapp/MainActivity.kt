@@ -7,6 +7,7 @@ import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 import java.net.URL
 import java.text.SimpleDateFormat
@@ -14,7 +15,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    val CITY: String = "Tbilisi,GE"
+    var CITY: String = "Tbilisi,GE"
     val API: String = "16d01da9c5125edd9cc8380c6c50658e"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +23,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         weatherTask().execute()
+        searchView.setOnClickListener {
+            CITY = newLocation.text.toString()
+            weatherTask().execute()
+        }
 
     }
 
