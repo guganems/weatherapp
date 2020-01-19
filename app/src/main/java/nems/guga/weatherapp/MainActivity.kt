@@ -1,5 +1,6 @@
 package nems.guga.weatherapp
 
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.view.View
@@ -27,7 +28,10 @@ class MainActivity : AppCompatActivity() {
             CITY = newLocation.text.toString()
             weatherTask().execute()
         }
-
+        detailsButton.setOnClickListener {
+            val intent = Intent(this, DetailsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     inner class weatherTask() : AsyncTask<String, Void, String>() {
